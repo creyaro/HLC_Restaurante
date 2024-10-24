@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar un Pedido</title>
+    <script>
+        function mostrarDatos(event) {
+            event.preventDefault(); // Evita el envío del formulario
+            const form = document.getElementById('pedidoForm');
+            const nombre = form.nombre.value;
+            const plato = form.plato.value;
+            const cantidad = form.cantidad.value;
+            const observaciones = form.observaciones.value;
+
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <h3>Datos del Pedido:</h3>
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>Plato:</strong> ${plato}</p>
+                <p><strong>Cantidad:</strong> ${cantidad}</p>
+                <p><strong>Observaciones:</strong> ${observaciones}</p>
+            `;
+        }
+    </script>
+</head>
+<body>
+
+<h1>Realizar un Pedido</h1>
+
+<form id="pedidoForm" onsubmit="if(confirm('¿Estás seguro de que deseas continuar?')) {mostrarDatos(event)}">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="plato">Plato:</label>
+    <input type="text" id="plato" name="plato" required list="platos">
+    <datalist id="platos">
+        <option value="Spaghetti Carbonara">
+        <option value="Pizza Margherita">
+        <option value="Ensalada Caprese">
+    </datalist><br><br>
+
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad" min="1" value="1" required><br><br>
+
+    <label for="observaciones">Observaciones:</label><br>
+    <textarea id="observaciones" name="observaciones" rows="4"></textarea><br><br>
+
+    <button type="submit">Enviar</button>
+    <button type="reset">Resetear</button>
+</form><br><br>
+
+<a href="index.html">Volver al inicio</a>
+
+
+<div id="resultado"></div>
+
+</body>
+</html>
